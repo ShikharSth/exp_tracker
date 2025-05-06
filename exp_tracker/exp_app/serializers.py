@@ -60,3 +60,4 @@ class IncomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Income
         fields = ['id', 'username', 'income_amount', 'date']
+        read_only_fields = ['username']

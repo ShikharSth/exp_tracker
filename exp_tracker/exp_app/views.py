@@ -28,3 +28,6 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 class IncomeViewSet(viewsets.ModelViewSet):
     queryset = Income.objects.all()
     serializer_class = IncomeSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(user_id=self.request.user)
