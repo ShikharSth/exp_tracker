@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from .models import CustomUser
 from .serializers import UserSerializer, RegisterSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,3 +19,7 @@ class UserViewSet(viewsets.ModelViewSet):
             user = serializer.save()
             return Response({"message": "User registered successfully"})
         return Response(serializer.errors, status=400)
+
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainPairSerializer
