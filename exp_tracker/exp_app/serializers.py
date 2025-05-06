@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import CustomUser
+from .models import CustomUser, Income
 from django.contrib.auth.password_validation import validate_password
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
@@ -52,3 +52,11 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         }
 
         return data
+
+
+class IncomeSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user_id.username', read_only=True)
+
+    class Meta:
+        model = Income
+        fields = ['id', 'username', 'income_amount', 'date']

@@ -1,8 +1,8 @@
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import CustomUser
-from .serializers import UserSerializer, RegisterSerializer
+from .models import CustomUser, Income
+from .serializers import UserSerializer, RegisterSerializer, IncomeSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 from .serializers import CustomTokenObtainPairSerializer
 
@@ -23,3 +23,8 @@ class UserViewSet(viewsets.ModelViewSet):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class IncomeViewSet(viewsets.ModelViewSet):
+    queryset = Income.objects.all()
+    serializer_class = IncomeSerializer

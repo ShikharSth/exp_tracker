@@ -49,3 +49,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+
+class Income(models.Model):
+    user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    income_amount = models.FloatField()
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.user_id.username} - {self.income_amount}"
